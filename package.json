@@ -1,0 +1,46 @@
+{
+  "name": "configuration-manager",
+  "version": "1.0.0",
+  "description": "Fully-typed package to manage application configurations.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParkourOps/configuration-manager.git"
+  },
+  "keywords": [
+    "singleton",
+    "application",
+    "config",
+    "configs",
+    "configuration",
+    "configurations",
+    "setting",
+    "settings",
+    "environment",
+    "variables",
+    "state",
+    "env",
+    "dotenv"
+  ],
+  "author": "Tej Birring'",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ParkourOps/configuration-manager/issues"
+  },
+  "homepage": "https://github.com/ParkourOps/configuration-manager#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.17",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "zod": "^3.22.4"
+  },
+  "type": "module"
+}

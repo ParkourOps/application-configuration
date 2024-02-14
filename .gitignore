@@ -1,0 +1,5 @@
+# built
+lib/
+
+# node dependencies
+node_modules/
