@@ -1,34 +1,35 @@
-import { DeepPartial } from "./types/deep-partial";
+import {DeepPartial, DeepReadonly} from "ts-essentials";
 
-type ParseOptions = {
-    environmentVariables: {
-        trimWhitespace: boolean,
-        boolean: {
-            truthyValues: RegExp
-        }
+interface ParseOptions {
+    trimWhitespace: boolean,
+    boolean: {
+        truthyValues: RegExp
     }
 }
 
 const defaultParseOptions : ParseOptions = {
-    environmentVariables: {
-        trimWhitespace: true,
-        boolean: {
-            truthyValues: /^(true|yes|t|y)$/i,
-        }
-    }
-}
+    trimWhitespace: true,
+    boolean: {
+        truthyValues: /^(true|yes|t|y)$/i,
+    },
+};
 
 let _parseOptions : ParseOptions = defaultParseOptions;
 
 export function setParseOptions(parseOptions?: DeepPartial<ParseOptions>) {
     _parseOptions = {
-        environmentVariables: {
-            trimWhitespace: parseOptions?.environmentVariables?.trimWhitespace ?? defaultParseOptions.environmentVariables.trimWhitespace,
-            boolean: {
-                truthyValues: parseOptions?.environmentVariables?.boolean?.truthyValues ?? defaultParseOptions.environmentVariables.boolean.truthyValues,
-            }
-        }
+        trimWhitespace: parseOptions?.trimWhitespace ?? defaultParseOptions.trimWhitespace,
+        boolean: {
+            truthyValues: parseOptions?.boolean?.truthyValues ?? defaultParseOptions.boolean.truthyValues,
+        },
     };
 }
 
-export default _parseOptions;
+export function getParseOptions() : DeepReadonly<ParseOptions> {
+    return _parseOptions;
+}
+
+export default {
+    getParseOptions,
+    setParseOptions,
+};

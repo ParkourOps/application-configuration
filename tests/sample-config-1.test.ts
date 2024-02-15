@@ -1,21 +1,15 @@
-# Application Configuration
+import { z } from "zod";
+import { Boolean, Int, String, configVar, createConfig, fromEnv, fromFunc, fromVal } from "../src";
 
-* Define and initialise Typescript-friendly global read-only application configuration in runtime.
+test("sample configuration #1", ()=>{
+    process.env.PORT = "8080";
+    process.env.HOST = "http://127.0.0.1";
+    process.env.FORCE_TLS = "t";
 
-* Populate each config value using either a value (or source of value, e.g. function) (`fromVal`), an inline function (`fromFunc`), or the environment variable parser (`fromEnv`).
-
-* Validate config values using [Zod](https://zod.dev/) schema validation library, optionally using built-in base schemas: `String`, `Number`, `Int`, `BigInt`, and `Boolean`.
-
-## How to Use
-
-1. Create a `config.ts` file:
-
-    This file will define and export your app configuration.
-
-    Import and use `createConfig({...})` to define the configuration.
-
-    ```ts
-    import { Boolean, Integer, String, configVar, createConfig, fromEnv, fromFunc, fromVal } from "../src";
+    const AvailableProtocol = z.union([
+        z.literal("HTTP"),
+        z.literal("WebSocket"),
+    ]);
 
     const config = createConfig({
         // config can be sourced from env vars using `fromEnv`
@@ -35,24 +29,19 @@
         a: {
             b: {
                 c: {
-                    portNumber: configVar("Port Number", "REQUIRED", Int)(fromEnv("PORT"))
+                    portNumber: configVar("Port Number", "REQUIRED", Int)(fromEnv("PORT")),
                 },
-            }
+            },
         },
         // env vars can be parsed as boolean, the following (case-insensitive) evaluate to TRUE: "true", "yes", "t", "y"
         // "OPTIONAL" means error will NOT be thrown if env var has not been set, will instead evaluate to FALSE (for boolean schema) or UNDEFINED (for non-boolean schema).
-        forceTLS: configVar("Force Transport Layer Security (TLS)", "OPTIONAL", Boolean)(fromEnv("FORCE_TLS"))
+        forceTLS: configVar("Force Transport Layer Security (TLS)", "OPTIONAL", Boolean)(fromEnv("FORCE_TLS")),
     });
-    ```
 
-2. Access your configuration from other source files:
-
-    ```ts
-    import config from "config.ts"
-
-    console.log(config.a.b.c.portNumber);
-    // 8080
-
-    console.log(typeof config.a.b.c.portNumber);
-    // number
-    ```
+    expect(config.hostUrl).toBe("http://127.0.0.1");
+    expect(config.timeout).toBeGreaterThanOrEqual(5);
+    expect(config.timeout).toBeLessThanOrEqual(10);
+    expect(config.protocol).toBe("HTTP");
+    expect(config.a.b.c.portNumber).toBe(8080);
+    expect(config.forceTLS).toBe(true);
+});

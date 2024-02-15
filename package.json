@@ -1,14 +1,9 @@
 {
-  "name": "configuration-manager",
-  "version": "1.0.0",
-  "description": "Fully-typed package to manage application configurations.",
-  "main": "lib/index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ParkourOps/configuration-manager.git"
+  "name": "application-configuration",
+  "description": "Define and initialise Typescript-friendly global read-only application configuration in runtime.",
+  "author": {
+    "name": "Tej Birring",
+    "email": "tej@parkourops.com"
   },
   "keywords": [
     "singleton",
@@ -25,22 +20,41 @@
     "env",
     "dotenv"
   ],
-  "author": "Tej Birring'",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ParkourOps/configuration-manager/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParkourOps/application-configuration.git"
   },
-  "homepage": "https://github.com/ParkourOps/configuration-manager#readme",
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.17",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+  "bugs": {
+    "url": "https://github.com/ParkourOps/application-configuration/issues"
+  },
+  "homepage": "https://github.com/ParkourOps/application-configuration#readme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "files": [
+    "./lib"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "build": "npm run lint && rm -rf lib && tsc",
+    "test": "jest"
   },
   "dependencies": {
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.17",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "prettier": "3.2.5",
+    "ts-essentials": "^9.4.1",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   },
   "type": "module"
 }
