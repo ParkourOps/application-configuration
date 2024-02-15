@@ -1,5 +1,5 @@
 {
-  "name": "application-configuration",
+  "name": "@parkour-ops/application-configuration",
   "description": "Define and initialise Typescript-friendly global read-only application configuration in runtime.",
   "author": {
     "name": "Tej Birring",
@@ -28,7 +28,7 @@
     "url": "https://github.com/ParkourOps/application-configuration/issues"
   },
   "homepage": "https://github.com/ParkourOps/application-configuration#readme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "files": [
     "./lib"
@@ -38,6 +38,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "npm run lint && rm -rf lib && tsc",
+    "build+publish": "npm run build && npm publish --access public",
     "test": "jest"
   },
   "dependencies": {
@@ -55,6 +56,5 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
-  },
-  "type": "module"
+  }
 }
