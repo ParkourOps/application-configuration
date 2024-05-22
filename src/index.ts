@@ -1,7 +1,7 @@
 import { ZodBoolean, ZodType, ZodTypeDef } from "zod";
 import { getParseOptions } from "./parse-options";
 import { EnvironmentVariableNotSetError, InvalidConfigurationValueError } from "./errors";
-import { DeepReadonly } from "ts-essentials";
+import { DeepReadonly } from "./types/deep";
 export { String, Number, Int, BigInt, Boolean } from "./base-schemas";
 
 const parseOptions = getParseOptions();

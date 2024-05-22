@@ -1,4 +1,4 @@
-import {DeepPartial, DeepReadonly} from "ts-essentials";
+import { DeepPartial, DeepReadonly } from "./types/deep";
 
 interface ParseOptions {
     trimWhitespace: boolean,
